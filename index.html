@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AboGrade · Tu grado, preparado</title>
+<meta name="description" content="Practica para el examen de grado de Derecho con casos tipo AFG, simulaciones de examen y artículos vigentes desde LeyChile.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,600;1,9..144,800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --marino: #14204A; --marino2: #2C2A7A; --morado: #6C4CE0; --lila: #B9A6FF; --lila-suave: #F1EEFF;
+    --coral: #F07A55; --verde: #2A8C78; --dorado: #F2B33D; --fondo: #F6F4FB; --texto: #2a2f45;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--fondo); color: var(--texto); font-family: 'Nunito', system-ui, sans-serif; line-height: 1.55; }
+  a { color: inherit; }
+  .contenedor { width: min(1120px, 100% - 32px); margin-inline: auto; }
+  .serif { font-family: 'Fraunces', Georgia, serif; }
+  .mano { font-family: 'Caveat', cursive; }
+  em.marca { font-style: italic; color: var(--morado); position: relative; white-space: nowrap; }
+  em.marca::after { content: ""; position: absolute; left: -2%; right: -2%; bottom: 0.08em; height: 0.28em; background: var(--lila); opacity: .45; z-index: -1; border-radius: 6px; }
+
+  /* Navegación */
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(20,32,74,.92); backdrop-filter: blur(8px); }
+  nav .contenedor { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-weight: 900; font-size: 1.5rem; color: #fff; text-decoration: none; letter-spacing: -.5px; }
+  .logo span { color: var(--lila); }
+  .menu { display: flex; gap: 22px; align-items: center; }
+  .menu a { color: #fff; text-decoration: none; font-weight: 700; opacity: .85; }
+  .menu a:hover { opacity: 1; }
+  .boton { display: inline-flex; align-items: center; gap: 8px; background: var(--morado); color: #fff !important; padding: 12px 22px; border-radius: 16px; font-weight: 800; text-decoration: none; opacity: 1 !important; box-shadow: 0 8px 24px rgba(108,76,224,.35); transition: transform .15s; }
+  .boton:hover { transform: translateY(-2px); }
+  .boton.claro { background: #fff; color: var(--marino) !important; box-shadow: none; }
+
+  /* Portada */
+  .portada { background: radial-gradient(circle at 85% 10%, rgba(185,166,255,.25), transparent 40%), linear-gradient(135deg, var(--marino), var(--marino2)); color: #fff; overflow: hidden; position: relative; }
+  .portada .contenedor { display: grid; grid-template-columns: 1.15fr .85fr; gap: 24px; align-items: center; padding: 72px 0 0; }
+  .etiqueta { display: inline-block; background: rgba(255,255,255,.12); padding: 6px 14px; border-radius: 999px; font-weight: 800; letter-spacing: .08em; font-size: .78rem; text-transform: uppercase; }
+  .portada h1 { font-family: 'Fraunces', Georgia, serif; font-weight: 800; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.02; margin: 18px 0 14px; letter-spacing: -1px; }
+  .portada h1 em { font-style: italic; color: var(--lila); }
+  .portada p.bajada { font-size: 1.2rem; max-width: 34ch; opacity: .9; }
+  .acciones { display: flex; gap: 14px; flex-wrap: wrap; margin: 26px 0 40px; }
+  .nota-mano { font-family: 'Caveat', cursive; font-size: 1.7rem; color: var(--dorado); transform: rotate(-4deg); display: inline-block; margin-left: 6px; }
+  /* Personaje y, a su lado (nunca encima), tres tarjetas pequeñas */
+  .escena { align-self: end; display: flex; align-items: center; justify-content: center; gap: 16px; }
+  .escena img { width: min(280px, 58%); border-radius: 28px 28px 0 0; display: block; align-self: end; }
+  .chips { display: flex; flex-direction: column; gap: 12px; }
+  .flotante { background: #fff; color: var(--marino); border-radius: 14px; padding: 8px 12px; box-shadow: 0 10px 28px rgba(0,0,0,.22); font-weight: 800; font-size: .88rem; line-height: 1.25; display: flex; gap: 8px; align-items: center; animation: flotar 4s ease-in-out infinite; white-space: nowrap; }
+  .flotante small { display: block; font-weight: 600; color: #6b7090; font-size: .75rem; }
+  .flotante .ico { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; font-size: 1rem; flex: none; }
+  .f2 { animation-delay: -1.5s; } .f3 { animation-delay: -3s; }
+  @keyframes flotar { 50% { transform: translateY(-10px); } }
+  .burbuja { position: absolute; border-radius: 50%; background: rgba(255,255,255,.06); }
+
+  /* Cifras */
+  .cifras { background: #fff; }
+  .cifras .contenedor { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 34px 0; text-align: center; }
+  .cifra b { font-family: 'Fraunces', Georgia, serif; font-size: 2.6rem; color: var(--marino); display: block; line-height: 1; }
+  .cifra span { color: #6b7090; font-weight: 700; }
+
+  /* Secciones */
+  section.bloque { padding: 84px 0; }
+  .titulo-seccion { text-align: center; max-width: 720px; margin: 0 auto 42px; }
+  .titulo-seccion h2 { font-family: 'Fraunces', Georgia, serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--marino); line-height: 1.1; margin: 10px 0; letter-spacing: -.5px; }
+  .titulo-seccion .mano { font-size: 1.6rem; color: var(--coral); }
+  .pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .paso { background: #fff; border-radius: 24px; padding: 28px; position: relative; }
+  .paso .num { font-family: 'Fraunces', Georgia, serif; font-size: 3.4rem; font-weight: 800; color: var(--lila-suave); position: absolute; right: 20px; top: 6px; }
+  .paso h3 { color: var(--marino); margin: 6px 0; font-size: 1.25rem; }
+
+  .tarjetas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .tarjeta { border-radius: 26px; padding: 28px; color: #fff; position: relative; overflow: hidden; min-height: 230px; }
+  .tarjeta h3 { font-family: 'Fraunces', Georgia, serif; font-size: 1.6rem; margin: 14px 0 8px; line-height: 1.15; }
+  .tarjeta .ico { font-size: 1.6rem; width: 52px; height: 52px; border-radius: 16px; background: rgba(255,255,255,.2); display: grid; place-items: center; }
+  .tarjeta::after { content: ""; position: absolute; width: 180px; height: 180px; border-radius: 50%; background: rgba(255,255,255,.1); right: -50px; bottom: -60px; }
+  .t-marino { background: var(--marino); } .t-coral { background: var(--coral); } .t-verde { background: var(--verde); }
+  .t-morado { background: var(--morado); } .t-dorado { background: var(--dorado); color: var(--marino); } .t-azul { background: #2E7DD7; }
+
+  .ley { background: linear-gradient(135deg, #fff, var(--lila-suave)); }
+  .ley .contenedor { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .ley h2 { font-family: 'Fraunces', Georgia, serif; font-size: clamp(2rem, 4vw, 2.8rem); color: var(--marino); line-height: 1.1; }
+  .articulo { background: #fff; border-radius: 22px; padding: 24px; box-shadow: 0 20px 50px rgba(20,32,74,.12); }
+  .articulo .norma { color: var(--morado); font-weight: 800; }
+  .articulo h4 { font-family: 'Fraunces', Georgia, serif; font-size: 1.5rem; margin: 4px 0 10px; color: var(--marino); }
+  .articulo .fuente { color: #8a8fa8; font-size: .85rem; margin-top: 12px; }
+  .cita { background: rgba(108,76,224,.1); color: var(--morado); font-weight: 800; padding: 1px 8px; border-radius: 8px; }
+
+  .personajes { display: flex; gap: 24px; justify-content: center; align-items: end; flex-wrap: wrap; }
+  .personaje { text-align: center; }
+  .personaje img { width: 200px; border-radius: 24px; display: block; }
+  .personaje .mano { font-size: 1.6rem; color: var(--morado); }
+
+  details { background: #fff; border-radius: 18px; padding: 18px 22px; margin-bottom: 12px; }
+  summary { font-weight: 800; color: var(--marino); cursor: pointer; font-size: 1.08rem; }
+  details p { margin: 10px 0 0; }
+
+  .final { background: linear-gradient(135deg, var(--morado), var(--marino2)); color: #fff; text-align: center; border-radius: 34px; padding: 60px 24px; }
+  .final h2 { font-family: 'Fraunces', Georgia, serif; font-size: clamp(2rem, 5vw, 3.2rem); margin: 0 0 10px; }
+  footer { padding: 40px 0; color: #6b7090; font-size: .9rem; text-align: center; }
+
+  @media (max-width: 860px) {
+    .portada .contenedor, .ley .contenedor { grid-template-columns: 1fr; }
+    .pasos, .tarjetas { grid-template-columns: 1fr; }
+    .cifras .contenedor { grid-template-columns: repeat(2, 1fr); }
+    .menu a:not(.boton) { display: none; }
+    .escena { flex-direction: column; gap: 14px; }
+    .escena img { width: min(260px, 72%); order: 2; }
+    .chips { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 8px; order: 1; }
+    .flotante { font-size: .8rem; padding: 6px 10px; }
+    .flotante .ico { width: 26px; height: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="contenedor">
+    <a class="logo" href="#">Abo<span>Grade</span></a>
+    <div class="menu">
+      <a href="#como">Cómo funciona</a>
+      <a href="#que">Qué incluye</a>
+      <a href="#preguntas">Preguntas</a>
+      <a class="boton" href="app/">Probar la app</a>
+    </div>
+  </div>
+</nav>
+
+<header class="portada">
+  <div class="burbuja" style="width:380px;height:380px;right:-120px;top:-120px"></div>
+  <div class="burbuja" style="width:180px;height:180px;left:-60px;bottom:-60px"></div>
+  <div class="contenedor">
+    <div>
+      <span class="etiqueta">Examen de grado · Derecho</span>
+      <h1>Tu grado,<br><em>preparado.</em></h1>
+      <p class="bajada">Practica con casos como los del examen, rinde simulaciones con cronómetro y estudia con la ley vigente, artículo por artículo.</p>
+      <div class="acciones">
+        <a class="boton" href="app/">Comenzar a practicar →</a>
+        <a class="boton claro" href="#como">Ver cómo funciona</a>
+      </div>
+      <span class="nota-mano">¡pequeños pasos, grandes metas!</span>
+    </div>
+    <div class="escena">
+      <img src="img/chica.png" alt="Personaje de AboGrade con una tablet, haciendo el signo de la victoria">
+      <div class="chips">
+      <div class="flotante f1"><div class="ico" style="background:#F1EEFF">⚖️</div><div>Caso AFG<small>4 preguntas · justificación</small></div></div>
+      <div class="flotante f2"><div class="ico" style="background:#E3F4EF">⏱️</div><div>Simulación<small>20 preguntas · 150 min</small></div></div>
+      <div class="flotante f3"><div class="ico" style="background:#FFF3DD">⚡</div><div>Quiz diario<small>5 preguntas al día</small></div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="cifras">
+  <div class="contenedor">
+    <div class="cifra"><b>21</b><span>casos tipo examen</span></div>
+    <div class="cifra"><b>72</b><span>preguntas de alternativa</span></div>
+    <div class="cifra"><b>3</b><span>áreas del examen</span></div>
+    <div class="cifra"><b>6.735</b><span>artículos desde LeyChile</span></div>
+  </div>
+</div>
+
+<section class="bloque" id="como">
+  <div class="contenedor">
+    <div class="titulo-seccion">
+      <span class="mano">así de simple</span>
+      <h2>Estudia como se <em class="marca">rinde</em> el examen</h2>
+      <p>Los casos siguen el formato real: un relato con datos que distraen, preguntas de cuatro alternativas y algunas para justificar.</p>
+    </div>
+    <div class="pasos">
+      <div class="paso"><span class="num">01</span><h3>Elige tu tema</h3><p>Civil y Familia, Procesal o Público, organizados según el temario oficial de tu universidad.</p></div>
+      <div class="paso"><span class="num">02</span><h3>Resuelve y justifica</h3><p>Responde, escribe tu justificación y compárala con una respuesta modelo y su pauta.</p></div>
+      <div class="paso"><span class="num">03</span><h3>Mide tu avance</h3><p>Rinde la simulación completa con cronómetro y revisa tu nota por caso y por área.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="bloque" id="que" style="padding-top:0">
+  <div class="contenedor">
+    <div class="titulo-seccion">
+      <span class="mano">todo en un solo lugar</span>
+      <h2>Lo que <em class="marca">incluye</em></h2>
+    </div>
+    <div class="tarjetas">
+      <div class="tarjeta t-marino"><div class="ico">⚖️</div><h3>Casos tipo AFG</h3><p>Relatos con distractores y preguntas encadenadas, como en el examen.</p></div>
+      <div class="tarjeta t-verde"><div class="ico">⏱️</div><h3>Simulación de examen</h3><p>20 preguntas intercaladas, cronómetro opcional y corrección al final.</p></div>
+      <div class="tarjeta t-coral"><div class="ico">⚡</div><h3>Quiz diario</h3><p>Cinco preguntas nuevas cada día para mantener el ritmo.</p></div>
+      <div class="tarjeta t-morado"><div class="ico">📜</div><h3>Artículos a un toque</h3><p>Cada cita abre el texto del artículo vigente, con su fecha de versión.</p></div>
+      <div class="tarjeta t-azul"><div class="ico">✍️</div><h3>Justificaciones con pauta</h3><p>Escribe y compara con una respuesta modelo y sus criterios.</p></div>
+      <div class="tarjeta t-dorado"><div class="ico">🎓</div><h3>Tu compañero de estudio</h3><p>Elige tu personaje y sigue tu progreso día a día.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="bloque ley">
+  <div class="contenedor">
+    <div>
+      <span class="mano" style="font-size:1.6rem;color:var(--coral)">sin libros desactualizados</span>
+      <h2>Estudia con la <em class="marca">ley vigente</em></h2>
+      <p>Los textos legales vienen directamente de la Biblioteca del Congreso Nacional (LeyChile) y se revisan contra la versión vigente. Cuando una ley cambia, los casos que la usan se marcan para revisión.</p>
+    </div>
+    <div class="articulo">
+      <div class="norma">Código Civil</div>
+      <h4>Artículo 1489</h4>
+      <p>En los contratos bilaterales va envuelta la condición resolutoria de no cumplirse por uno de los contratantes lo pactado…</p>
+      <p>Citado en la explicación como <span class="cita">1489</span> — tócalo y se abre.</p>
+      <div class="fuente">Fuente: Biblioteca del Congreso Nacional – LeyChile</div>
+    </div>
+  </div>
+</section>
+
+<section class="bloque">
+  <div class="contenedor">
+    <div class="titulo-seccion">
+      <span class="mano">elige quién te acompaña</span>
+      <h2>Tu compañero de <em class="marca">estudio</em></h2>
+    </div>
+    <div class="personajes">
+      <div class="personaje"><img src="img/chica.png" alt="Personaje femenino de AboGrade"><span class="mano">¡Tú puedes!</span></div>
+      <div class="personaje"><img src="img/chico.png" alt="Personaje masculino de AboGrade"><span class="mano">¡Vamos por más!</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="bloque" id="preguntas" style="padding-top:0">
+  <div class="contenedor" style="max-width:820px">
+    <div class="titulo-seccion">
+      <span class="mano">lo que más nos preguntan</span>
+      <h2>Preguntas <em class="marca">frecuentes</em></h2>
+    </div>
+    <details><summary>¿Qué materias incluye?</summary><p>Derecho Civil y de Familia, Derecho Procesal y Derecho Público, siguiendo el temario oficial del examen de grado.</p></details>
+    <details><summary>¿Los casos son como los del examen?</summary><p>Sí: siguen el formato de casos con preguntas de alternativa y preguntas para justificar, con un nivel de dificultad revisado por una estudiante que prepara su examen de grado.</p></details>
+    <details><summary>¿De dónde salen los artículos?</summary><p>De LeyChile, el servicio oficial de la Biblioteca del Congreso Nacional, en su versión vigente.</p></details>
+    <details><summary>¿Necesito instalar algo?</summary><p>No. Funciona desde el navegador del celular o el computador, y puedes agregarla a tu pantalla de inicio como una app.</p></details>
+    <details><summary>¿Cuánto cuesta?</summary><p>Estamos en etapa de prueba. Los planes se anunciarán pronto.</p></details>
+  </div>
+</section>
+
+<section class="bloque" id="probar" style="padding-top:0">
+  <div class="contenedor">
+    <div class="final">
+      <span class="mano" style="font-size:1.8rem;color:var(--dorado)">tu esfuerzo de hoy…</span>
+      <h2>…es tu título de mañana.</h2>
+      <p style="opacity:.9">Empieza hoy con un caso o con el quiz del día.</p>
+      <p style="margin-top:22px"><a class="boton claro" href="app/">Abrir AboGrade →</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="contenedor">
+    AboGrade · Hecho con dedicación para quienes preparan su grado.<br>
+    Textos legales: Biblioteca del Congreso Nacional – LeyChile.
+  </div>
+</footer>
+
+</body>
+</html>
