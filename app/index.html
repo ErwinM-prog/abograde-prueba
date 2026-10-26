@@ -34,11 +34,104 @@
   <title>AboGrade</title>
   <link rel="manifest" href="manifest.json">
   <style>
-    /* Fondo mientras carga (mismo verde pizarra de la app). */
-    html, body { margin: 0; height: 100%; background: #2F4A45; }
+    html, body { margin: 0; height: 100%; background: #F4F3EC; }
+
+    /* Pantalla de carga: el logo se arma cayendo pieza por pieza (columnas, capitel,
+       "Abo", "Grade") mientras se descarga la app. La quita carga.js cuando Flutter
+       dibuja su primera pantalla. Medidas de las piezas tomadas del logo original
+       (diseno/logo/abograde_logo_original.webp), en una caja de 670 × 182. */
+    #carga {
+      position: fixed; inset: 0; z-index: 9999; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      background: #F4F3EC; transition: opacity .45s ease;
+    }
+    #carga.fuera { opacity: 0; pointer-events: none; }
+    #carga .anillo {
+      position: absolute; width: 46vmin; height: 46vmin; left: -23vmin; top: -23vmin;
+      border: 7vmin solid #E9E8E2; border-radius: 50%;
+      animation: deslizar-arriba .9s cubic-bezier(.2,.8,.2,1) both;
+    }
+    #carga .circulo {
+      position: absolute; width: 60vmin; height: 60vmin; right: -22vmin; bottom: -30vmin;
+      background: #405550; border-radius: 50%;
+      animation: deslizar-abajo .9s .1s cubic-bezier(.2,.8,.2,1) both;
+    }
+    #carga .logo { position: relative; width: min(82vw, 440px); aspect-ratio: 670 / 182; }
+    #carga .pieza { position: absolute; display: block; }
+    #carga .icono { left: 1.045%; top: 5.495%; width: 14.776%; height: 53.297%; }
+    /* Columna en bloques (no SVG): así la caída la mueve la tarjeta gráfica y no se
+       traba mientras el navegador prepara la app. Medidas sobre una caja de 99 × 97. */
+    #carga .icono i { position: absolute; display: block; background: #3E544F; border-radius: 999px; }
+    #carga .icono .capitel { left: 1.01%; top: 0; width: 98.99%; height: 14.43%; }
+    #carga .icono .col1 { left: 19.19%; top: 24.74%; width: 14.14%; height: 61.86%; }
+    #carga .icono .col2 { left: 43.43%; top: 24.74%; width: 14.14%; height: 75.26%; }
+    #carga .icono .col3 { left: 67.68%; top: 24.74%; width: 14.14%; height: 61.86%; }
+    #carga .cae, #carga .lema { will-change: transform, opacity; }
+    /* Nada se mueve hasta que las imágenes estén listas (carga.js agrega "listo"). */
+    #carga:not(.listo) *, #carga:not(.listo) *::after { animation-play-state: paused !important; }
+    #carga .abo   { left: 18.806%; top: 6.044%; width: 31.940%; height: 52.198%; }
+    #carga .grade { left: 50.746%; top: 2.198%; width: 48.060%; height: 56.044%; }
+    #carga .lema  { left: 15.522%; top: 74.176%; width: 67.313%; height: 24.176%; }
+    #carga .barra {
+      position: absolute; left: 30%; right: 30%; top: 112%; height: 3px;
+      border-radius: 3px; background: #E4E1D3; overflow: hidden;
+      animation: aparecer .4s 1.5s both;
+    }
+    #carga .barra::after {
+      content: ""; position: absolute; top: 0; bottom: 0; width: 40%;
+      background: #C19F54; border-radius: 3px;
+      animation: recorrer 1.1s 1.6s ease-in-out infinite;
+    }
+    /* Caída con un rebote al llegar. */
+    #carga .cae { animation: caer .7s cubic-bezier(.3,.9,.4,1.25) both; }
+    #carga .col1 { animation-delay: .15s; }
+    #carga .col2 { animation-delay: .27s; }
+    #carga .col3 { animation-delay: .39s; }
+    #carga .capitel { animation-name: caer-capitel; animation-delay: .62s; transform-origin: 50% 100%; }
+    #carga .abo   { animation-delay: .9s; }
+    #carga .grade { animation-delay: 1.05s; }
+    #carga .lema  { animation: aparecer-subiendo .6s 1.35s ease-out both; }
+    @keyframes caer {
+      0%   { transform: translateY(-75vh); opacity: 0; }
+      15%  { opacity: 1; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes caer-capitel {
+      0%   { transform: translateY(-75vh) scale(1, 1); opacity: 0; }
+      15%  { opacity: 1; }
+      78%  { transform: translateY(0) scale(1.06, .8); }
+      100% { transform: translateY(0) scale(1, 1); opacity: 1; }
+    }
+    @keyframes aparecer-subiendo { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
+    @keyframes aparecer { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes recorrer { from { left: -40%; } to { left: 100%; } }
+    @keyframes deslizar-arriba { from { transform: translate(-20vmin, -20vmin); } to { transform: none; } }
+    @keyframes deslizar-abajo { from { transform: translate(20vmin, 20vmin); } to { transform: none; } }
+    /* Quien pidió "reducir movimiento" ve el logo quieto. */
+    @media (prefers-reduced-motion: reduce) {
+      #carga *, #carga *::after { animation: none !important; }
+      #carga .barra::after { left: 30%; }
+    }
   </style>
 </head>
 <body>
+  <div id="carga" role="status" aria-label="Cargando AboGrade">
+    <div class="anillo"></div>
+    <div class="circulo"></div>
+    <div class="logo">
+      <div class="pieza icono" aria-hidden="true">
+        <i class="cae col1"></i>
+        <i class="cae col2"></i>
+        <i class="cae col3"></i>
+        <i class="cae capitel"></i>
+      </div>
+      <img class="pieza cae abo" src="carga/abo.png" alt="">
+      <img class="pieza cae grade" src="carga/grade.png" alt="">
+      <img class="pieza lema" src="carga/lema.png" alt="Tu preparación, tu título.">
+      <div class="barra"></div>
+    </div>
+  </div>
+  <script src="carga.js"></script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
