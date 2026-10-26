@@ -1,0 +1,25 @@
+/* AboGrade · estilo común de las páginas legales (sin fuentes ni código externos). */
+:root{--bg:#e9efee;--surface:#fff;--ink:#2b3f3b;--muted:#5a6b67;--line:#d3ddda;--accent:#3e6b62;--marino:#2f4a45;--mark:#f3e2a8}
+@media (prefers-color-scheme:dark){:root{--bg:#1f302d;--surface:#2a3f3b;--ink:#e6eeec;--muted:#a9bab6;--line:#3c5450;--accent:#e2bf5c;--marino:#e6eeec;--mark:#5a4a12}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:780px;margin:0 auto;padding:28px 16px 64px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px;font-size:.92rem}
+.top a{color:var(--accent);text-decoration:none;font-weight:700}
+.logo{font-weight:900;font-size:1.35rem;color:var(--marino);text-decoration:none;letter-spacing:-.3px}
+.logo span{color:var(--accent)}
+nav.docs{display:flex;flex-wrap:wrap;gap:6px 14px}
+nav.docs a{color:var(--muted);font-weight:600} nav.docs a[aria-current]{color:var(--ink);text-decoration:underline}
+article{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px 24px}
+h1{font-size:1.8rem;line-height:1.2;margin:0 0 6px;color:var(--marino)}
+h2{font-size:1.15rem;margin:28px 0 6px;color:var(--marino)}
+.ver{color:var(--muted);font-size:.88rem;margin:0 0 18px}
+p,li{max-width:72ch} ul,ol{padding-left:1.3em}
+a{color:var(--accent)}
+table{width:100%;border-collapse:collapse;font-size:.9rem;margin:10px 0;display:block;overflow-x:auto}
+th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:8px 10px 8px 0}
+th{color:var(--muted);font-weight:700}
+code{font-size:.85em;word-break:break-all}
+mark{background:var(--mark);color:inherit;padding:0 3px;border-radius:3px}
+.box{border-left:3px solid var(--accent);padding:8px 14px;background:rgba(201,164,58,.1);border-radius:0 10px 10px 0;margin:14px 0}
+footer{color:var(--muted);font-size:.85rem;margin-top:22px;text-align:center}
