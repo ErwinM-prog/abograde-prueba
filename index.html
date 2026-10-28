@@ -116,6 +116,21 @@
   .encabezado h2 { font-size: clamp(1.9rem, 3.2vw, 2.5rem); line-height: 1.15; }
   .encabezado p { margin-top: 14px; color: var(--gris); font-size: 1.05rem; }
 
+  /* Así se practica: la app real en un marco de celular, con un video que se repite */
+  .demo .contenedor { display: grid; grid-template-columns: 1fr auto; gap: 64px; align-items: center; }
+  .demo .encabezado { margin-bottom: 0; }
+  .demo figure { margin: 0; }
+  .pasos { margin: 28px 0 0; padding: 0; list-style: none; counter-reset: paso; display: grid; gap: 18px; }
+  .pasos li { counter-increment: paso; display: grid; grid-template-columns: 34px 1fr; gap: 14px; align-items: start; }
+  .pasos li::before { content: counter(paso); width: 34px; height: 34px; border-radius: 50%; background: var(--tinta); color: var(--lila); font-weight: 700; display: grid; place-items: center; font-size: .95rem; }
+  .pasos b { display: block; }
+  .pasos span { color: var(--gris); font-size: .95rem; }
+  .telefono { width: 300px; padding: 10px; border-radius: 42px; background: #1E2F2B; box-shadow: 0 30px 70px -24px rgba(10,25,22,.55), inset 0 0 0 2px rgba(255,255,255,.08); }
+  .telefono video, .telefono img { display: block; width: 100%; aspect-ratio: 390 / 844; object-fit: cover; border-radius: 32px; background: var(--lila-suave); }
+  .telefono img { display: none; }
+  .demo figcaption { margin-top: 12px; text-align: center; font-size: .85rem; color: var(--gris); }
+  @media (prefers-reduced-motion: reduce) { .telefono video { display: none; } .telefono img { display: block; } }
+
   /* Tres formas de practicar: columnas separadas por una línea, con su ficha */
   .modos { display: grid; grid-template-columns: repeat(3, 1fr); }
   .modo { padding: 4px 32px 0; border-left: 1px solid var(--linea); --color: var(--tinta); }
@@ -190,7 +205,9 @@
   footer p { max-width: 70ch; }
 
   @media (max-width: 980px) {
-    .portada .contenedor, .ley .contenedor { grid-template-columns: 1fr; gap: 44px; }
+    .portada .contenedor, .ley .contenedor, .demo .contenedor { grid-template-columns: 1fr; gap: 44px; }
+    .demo figure { margin: 0 auto; }
+    .telefono { width: min(280px, 78vw); }
   }
   @media (max-width: 760px) {
     body { font-size: 16px; }
@@ -237,8 +254,8 @@
         <a class="boton secundario" href="#practica">Ver cómo funciona</a>
       </div>
       <dl class="datos">
-        <div><dt>21</dt><dd>casos en formato de examen</dd></div>
-        <div><dt>72</dt><dd>preguntas de alternativa</dd></div>
+        <div><dt>33</dt><dd>casos en formato de examen</dd></div>
+        <div><dt>180</dt><dd>preguntas de alternativa</dd></div>
         <div><dt>6.735</dt><dd>artículos desde LeyChile</dd></div>
       </dl>
     </div>
@@ -263,6 +280,30 @@
         <p><b>Art. 1873.</b> Si el comprador estuviere constituido en mora de pagar el precio en el lugar y tiempo dichos, el vendedor tendrá derecho para exigir el precio o la resolución de la venta, con resarcimiento de perjuicios.</p>
         <small>Texto vigente. Fuente: Biblioteca del Congreso Nacional, LeyChile.</small>
       </aside>
+    </figure>
+  </div>
+</section>
+
+<section class="seccion demo" id="demo">
+  <div class="contenedor">
+    <div>
+      <div class="encabezado">
+        <h2>Así se practica</h2>
+        <p>Esta es la app real, en un celular. No hay que instalar nada: funciona en el navegador.</p>
+      </div>
+      <ol class="pasos">
+        <li><div><b>Elige la materia y la unidad</b><span>Civil y Familia, Procesal o Público, ordenadas según el temario.</span></div></li>
+        <li><div><b>Lee el caso</b><span>Un relato con hechos relevantes y otros que distraen, como en el examen.</span></div></li>
+        <li><div><b>Responde y corrige al momento</b><span>Cada alternativa trae su explicación y los artículos citados se abren con un toque.</span></div></li>
+      </ol>
+    </div>
+    <figure>
+      <div class="telefono">
+        <video src="video/demo.mp4" poster="video/demo-poster.jpg" autoplay muted loop playsinline preload="metadata"
+               aria-label="Recorrido por la app: se elige una materia, se abre un caso y se responde una pregunta, que se corrige al momento."></video>
+        <img src="video/demo-poster.jpg" alt="Pantalla de inicio de la app AboGrade en un celular.">
+      </div>
+      <figcaption>Video sin sonido, se repite.</figcaption>
     </figure>
   </div>
 </section>
