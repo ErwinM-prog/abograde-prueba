@@ -19,7 +19,7 @@
     GitHub Pages no permite cabeceras propias: al pasar a Netlify o similar, agregar
     también frame-ancestors 'none' (que no funciona desde esta etiqueta).
   -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://rysxjukisuisnqdiqfbi.supabase.co https://fonts.gstatic.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' blob: https://rysxjukisuisnqdiqfbi.supabase.co https://fonts.gstatic.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://rysxjukisuisnqdiqfbi.supabase.co; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <!-- iOS meta tags & icons -->
